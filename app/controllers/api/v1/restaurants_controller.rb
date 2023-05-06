@@ -8,9 +8,9 @@ class Api::V1::RestaurantsController < ApplicationController
     @restaurant = Restaurant.create restaurant_params
     
     if @restaurant.valid?
-    render json: @restaurant, status: :created
+      render json: @restaurant, status: :created
     else
-    render json: @restaurant.errors, status: :unprocessable_entity
+      render json: @restaurant.errors, status: :unprocessable_entity
     end
   end
 
@@ -23,6 +23,6 @@ class Api::V1::RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:title, :content)
+    params.require(:restaurant).permit(:name, :address)
   end
 end
