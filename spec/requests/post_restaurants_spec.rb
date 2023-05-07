@@ -24,7 +24,21 @@ RSpec.describe 'Restaurants', type: :request do
       it 'returns a created status' do
         expect(response).to have_http_status(:created)
       end
+    end
 
+    context 'with invalid parameters' do
+
+        before do
+            post '/api/v1/restaurants', params:
+                    { restaurant: {
+                    name: "",
+                    address: "my_restaurant.address"
+                    } }
+        end
+
+      it 'returns unprocessable entity status' do
+      expect(response).to have_http_status(:unprocessable_entity)
+      end
     end
   end
 end
